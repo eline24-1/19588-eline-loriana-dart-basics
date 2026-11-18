@@ -54,6 +54,21 @@ void drawTriangle(int height) {
   }
 }
 
+int momoFee(int amount) {
+  // by L.E.
+  if (amount <= 0) {
+    return -1;
+  } else if (amount <= 1000) {
+    return 20;
+  } else if (amount <= 10000) {
+    return 100;
+  } else if (amount <= 150000) {
+    return 250;
+  } else {
+    return 1500;
+  }
+}
+
 void main() {
   print('Reg no: $regNo | D = $d | T = $t');
 
