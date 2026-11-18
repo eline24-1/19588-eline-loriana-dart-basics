@@ -88,28 +88,50 @@ int sendMoney(int balance, int amount) {
   return newBalance;
 }
 
+int buyAirtime(int balance, int amount) {
+  // by L.E.
+  if (amount < 100 || amount > 50000) {
+    print('Failed: airtime must be between 100 and 50,000');
+    return balance;
+  }
+  if (amount > balance) {
+    print('Failed: insufficient balance');
+    return balance;
+  }
+  int newBalance = balance - amount;
+  print('Bought airtime ${formatRwf(amount)}. New balance: ${formatRwf(newBalance)}');
+  return newBalance;
+}
+
 void main() {
   print('Reg no: $regNo | D = $d | T = $t');
 
-  // formatRwf tests
-  print(formatRwf(0));
-  print(formatRwf(999));
-  print(formatRwf(1000));
-  print(formatRwf(1250000));
-  print(formatRwf(-5000));
-
-  // isValidPin tests
+  // 1. PIN checks
   print(isValidPin('12345'));    // false
   print(isValidPin('4821$d'));   // true
   print(isValidPin('77777'));    // false
   print(isValidPin('4821'));     // false
   print(isValidPin('48a21'));    // false
 
-  // sendMoney tests (temporary, the final main comes later)
+  // 2. Starting balance
   int balance = 20000 + t * 500;
   print('Starting balance: ${formatRwf(balance)}');
+
+  // 3. Transactions, in order
   balance = sendMoney(balance, (d + 1) * 3000);
   balance = sendMoney(balance, (d + 1) * 3000);
   balance = sendMoney(balance, (d + 1) * 3000);
+  balance = buyAirtime(balance, 1000);
   balance = sendMoney(balance, 0);
+  balance = sendMoney(balance, 200000);
+
+  // 4. Final balance
+  print('Final balance: ${formatRwf(balance)}');
+
+  // 5. My own tests (expected output in comments)
+  print(formatRwf(100000));      // 100,000 RWF
+  print(formatRwf(-999));        // -999 RWF
+  print(formatRwf(1000000));     // 1,000,000 RWF
+  print(isValidPin('00000'));    // false (same digit five times)
+  print(isValidPin('4821 '));    // false (a space is not a digit) <- might break
 }
