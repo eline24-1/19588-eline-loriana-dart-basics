@@ -69,6 +69,43 @@ int momoFee(int amount) {
   }
 }
 
+String maskPhone(String phone) {
+  // by L.E.
+  if (phone.length != 10) {
+    return 'INVALID';
+  }
+  String stars = '';
+  int i = 0;
+  while (i < phone.length - 5) {
+    stars += '*';
+    i++;
+  }
+  return phone.substring(0, 3) + stars + phone.substring(phone.length - 2);
+}
+
+String grade(int mark) {
+  // by L.E.
+  if (mark >= 80) {
+    return 'A';
+  } else if (mark >= 70) {
+    return 'B';
+  } else if (mark >= 50) {
+    return 'C';
+  }
+  return 'F';
+}
+
+bool isPalindrome(String word) {
+  // by L.E.
+  String w = word.toLowerCase();
+  int i = 0;
+  while (i < w.length) {
+    if (w[i] != w[w.length - 1 - i]) return false;
+    i++;
+  }
+  return true;
+}
+
 void main() {
   print('Reg no: $regNo | D = $d | T = $t');
 
@@ -82,4 +119,21 @@ void main() {
   drawTriangle(d + 3);
   drawTriangle(0);
   drawTriangle(-2);
+
+  String phone = '0788123456';
+  int totalFees = 0;
+  int i = 1;
+  while (i <= d + 3) {
+    int amount = i * 4000 + t * 100;
+    int fee = momoFee(amount);
+    print('Receipt $i | $amount RWF | fee $fee RWF | to ${maskPhone(phone)}');
+    totalFees += fee;
+    i++;
+  }
+  print('Total fees: $totalFees RWF');
+
+  // Part E tests
+  print(grade(85));               // A
+  print(isPalindrome('level'));   // true
+  print(isPalindrome('Level'));   // true
 }
