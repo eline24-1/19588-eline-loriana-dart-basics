@@ -1,24 +1,24 @@
 # Status
 
 ## Done
-- Repo created, README with personal details added
-
-## In progress
-- A1: predictions
-- A2: predictions
-- B1: predictions
+- A1: predictions and explanations
+- A2: predictions and explanations
+- B1: predictions and explanations
 - B2: countVowels
 - B3: initials
-- C1: predictions
-- C2: predictions
-- C3: predictions
-- C4: predictions
+- C1: predictions and explanations
+- C2: predictions and explanations
+- C3: predictions and explanations
+- C4: predictions and explanations
 - C5: drawTriangle
-- D1: predictions
+- D1: predictions and explanations
 - D2: MoMo receipt printer
 - E: find and fix
 - F: momo_sim.dart
-- G: debugging log (filled in as I go)
+- G: debugging log
+
+## In progress
+- Nothing
 
 ## Stuck on
-- Nothing yet
+- Nothing
