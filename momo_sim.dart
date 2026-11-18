@@ -72,6 +72,22 @@ bool isValidPin(String pin) {
   return true;
 }
 
+int sendMoney(int balance, int amount) {
+  // by L.E.
+  int fee = momoFee(amount);
+  if (fee == -1) {
+    print('Failed: invalid amount');
+    return balance;
+  }
+  if (amount + fee > balance) {
+    print('Failed: insufficient balance');
+    return balance;
+  }
+  int newBalance = balance - amount - fee;
+  print('Sent ${formatRwf(amount)} (fee ${formatRwf(fee)}). New balance: ${formatRwf(newBalance)}');
+  return newBalance;
+}
+
 void main() {
   print('Reg no: $regNo | D = $d | T = $t');
 
@@ -88,4 +104,12 @@ void main() {
   print(isValidPin('77777'));    // false
   print(isValidPin('4821'));     // false
   print(isValidPin('48a21'));    // false
+
+  // sendMoney tests (temporary, the final main comes later)
+  int balance = 20000 + t * 500;
+  print('Starting balance: ${formatRwf(balance)}');
+  balance = sendMoney(balance, (d + 1) * 3000);
+  balance = sendMoney(balance, (d + 1) * 3000);
+  balance = sendMoney(balance, (d + 1) * 3000);
+  balance = sendMoney(balance, 0);
 }
